@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
-import App from './components/App';
+import ProviderDirectory from './pages/providerDirectory.jsx';
 
 render(
-  <App />,
+  <ProviderDirectory />,
   document.getElementById('root')
 );
