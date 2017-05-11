@@ -3,16 +3,23 @@
   "version": "0.0.1",
   "description": "React Boilerplate following Airbnb's JavaScript (ES6) Style Guide.",
   "scripts": {
-    "start": "webpack-dev-server --inline --content-base build/",
+    "start": "NODE_ENV=dev webpack-dev-server --inline --content-base build/",
     "test": "./node_modules/.bin/mocha tests/**/*.spec.js --require babel-register",
     "test:watch": "./node_modules/.bin/mocha tests/**/*.spec.js --require babel-register --watch",
     "test:coverage": "nyc npm test",
     "build": "webpack"
   },
   "nyc": {
-    "reporter": ["text", "html"],
-    "exclude": ["tests/**"],
-    "extension": [".jsx"]
+    "reporter": [
+      "text",
+      "html"
+    ],
+    "exclude": [
+      "tests/**"
+    ],
+    "extension": [
+      ".jsx"
+    ]
   },
   "repository": {
     "type": "git",
@@ -41,20 +48,30 @@
     "chai": "^3.5.0",
     "clean-webpack-plugin": "^0.1.8",
     "copy-webpack-plugin": "^2.1.1",
+    "css-loader": "^0.28.1",
     "enzyme": "^2.8.0",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "file-loader": "^0.11.1",
     "mocha": "^3.2.0",
+    "node-sass": "^4.5.2",
     "nyc": "^10.2.0",
+    "postcss-loader": "^2.0.5",
     "react-addons-test-utils": "^15.5.0",
+    "sass-loader": "^6.0.5",
+    "style-loader": "^0.17.0",
+    "url-loader": "^0.5.8",
     "webpack": "^1.13.0",
+    "webpack-config-utils": "^2.3.0",
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
     "react": "^15.0.1",
-    "react-dom": "^15.0.1"
+    "react-dom": "^15.0.1",
+    "react-tap-event-plugin": "^2.0.1"
   }
 }

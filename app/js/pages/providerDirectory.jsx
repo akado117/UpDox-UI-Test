@@ -15,7 +15,6 @@ class ProviderDirectory extends React.Component {
   }
 
   render() {
-
     const providers = [];
     this.state.providers.forEach((provider,idx)=>{
       providers.push(<Provider key={`provider-${idx}`} provider={provider}/>)
