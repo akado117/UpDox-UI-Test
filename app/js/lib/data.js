@@ -1,4 +1,11 @@
 export default {
+  dataFields: {
+    first_name: "First Name",
+    last_name: "Last Name",
+    email_address: "Email Address",
+    specialty: "Specialty",
+    practice_name: 'Practice Name'
+  },
   initialData:
     [{"last_name": "Harris", "first_name": "Mike", "email_address": "mharris@updox.com", "specialty": "Pediatrics", "practice_name": "Harris Pediatrics"},
       {"last_name": "Wijoyo", "first_name": "Bimo", "email_address": "bwijoyo@updox.com", "specialty": "Podiatry", "practice_name": "Wijoyo Podiatry"},
