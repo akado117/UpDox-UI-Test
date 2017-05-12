@@ -77,10 +77,25 @@ class ProviderDirectory extends React.Component {
                 {providers}
               </div>
             </div>
+            <div className="row">
+              <div className="col s12 remove-btn-container">
+                <button className="waves-effect waves-light btn remove-btn"
+                        onClick={this.removeSelectedProviders}>Remove</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     )
+  }
+
+  removeSelectedProviders = () => {
+    const providersClone = _.cloneDeep(this.state.providers);
+    const sortedActiveProviders =  this.state.activeProviders.sort((a, b)=>{return b-a});
+    sortedActiveProviders.forEach((providerIdx)=>{
+      providersClone.splice(providerIdx, 1)
+    });
+    this.setState({providers: providersClone, activeProviders: []})
   }
 
   toggleActiveProvider = (idx)=> {
