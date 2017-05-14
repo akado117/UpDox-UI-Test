@@ -1,6 +1,7 @@
 import React from 'react'
 
 import Provider from '../components/provider.jsx'
+import AddProviderForm from '../components/addproviderForm.jsx'
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import _ from 'lodash'
@@ -41,13 +42,22 @@ class ProviderDirectory extends React.Component {
     const dataKeys = Data.dataFields? Object.keys(Data.dataFields): []
     const sortOptions = []
     dataKeys.forEach((key, idx)=>{
-      sortOptions.push(<MenuItem value={key} key={`sortItem-${idx}`} primaryText={Data.dataFields[key]} />)
+      sortOptions.push(<MenuItem value={key} key={`sortItem-${idx}`} primaryText={Data.dataFields[key][0]} />)
     })
 
     return (
       <div className="container provider-directory-container">
         <div className="row">
           <div className="col s12 l6">
+            <div className="row secondary-title">
+              <h2>Create Provider</h2>
+            </div>
+            <AddProviderForm formFields={Data.dataFields}/>
+          </div>
+          <div className="col s12 l6">
+            <div className="row secondary-title">
+              <h2>Provider List</h2>
+            </div>
             <div className="row">
               <div className="input-field col s6">
                 <SelectField

@@ -1,6 +1,24 @@
 .provider-directory-container{
+  .btn:focus {//forcing outline on focuse for ADA reasons
+    outline-color: rgb(77, 144, 254) !important; // #4D90FE
+    outline-offset: -2px !important;
+    outline-style: auto !important ;
+    outline-width: 5px !important;
+  }
+  .secondary-title {
+    h2 {
+      font-size: 22px;
+      text-align: center;
+      margin: 0px;
+    }
+    margin: 15px 0 0 0 ;
+  }
   .provider-list {
     width: 100%;
+    @media #{$large-and-up} {
+      height: 60vh;
+      overflow: scroll;
+    }
   }
   .remove-btn-container {
     display: flex;
