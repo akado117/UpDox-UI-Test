@@ -42,7 +42,7 @@ class ProviderDirectory extends React.Component {
     const dataKeys = Data.dataFields? Object.keys(Data.dataFields): []
     const sortOptions = []
     dataKeys.forEach((key, idx)=>{
-      sortOptions.push(<MenuItem value={key} key={`sortItem-${idx}`} primaryText={Data.dataFields[key][0]} />)
+      sortOptions.push(<MenuItem value={key} key={`sortItem-${idx}`} primaryText={Data.dataFields[key].label} />)
     })
 
     return (
