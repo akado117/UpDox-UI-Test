@@ -52,7 +52,7 @@ class ProviderDirectory extends React.Component {
             <div className="row secondary-title">
               <h2>Create Provider</h2>
             </div>
-            <AddProviderForm formFields={Data.dataFields}/>
+            <AddProviderForm formFields={Data.dataFields} onSubmit={this.addProvider}/>
           </div>
           <div className="col s12 l6">
             <div className="row secondary-title">
@@ -135,10 +135,14 @@ class ProviderDirectory extends React.Component {
   }
   changeSortByOrder = (e, key, payload) => {
     if(payload){
-      this.setState({sortByOrder: payload})
+      this.setState({sortByOrder: payload});
       this.sortProviders(this.state.sortByField, payload)
     }
   }
-};
+  addProvider = (providerData) => {
+    this.state.providers.push(providerData);//"bad practice" as its modifying state without calling setState
+    this.setState({providers: this.state.providers});//since setState is called immediately after its not worth the performance hit to create a new object and clone it.
+  }
+}
 
 export default ProviderDirectory

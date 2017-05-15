@@ -6,6 +6,20 @@
     border-bottom: 1px solid $primary-color;
     box-shadow: 0 1px 0 0 $primary-color;
   }
+  .success-message{
+    margin: 15px 10px;
+    border-radius: 3px;
+    padding: 15px;
+    background-color: #81c784;
+    text-align: center;
+  }
+  .failure-message{
+    margin: 15px 10px;
+    border-radius: 3px;
+    padding: 15px;
+    background-color: #e57373 ;
+    text-align: center;
+  }
   .add-provider-btn-container{
     width: 100%;
     display: flex;
