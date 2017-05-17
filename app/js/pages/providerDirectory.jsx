@@ -17,7 +17,8 @@ class ProviderDirectory extends React.Component {
       providers: Data.initialData || [],
       activeProviders: [],
       sortByField: '',
-      sortByOrder: 'asc'
+      sortByOrder: 'asc',
+      searchByObj: {}
     }
   }
 
@@ -27,24 +28,46 @@ class ProviderDirectory extends React.Component {
     });
   }
 
-  render() {
-    const providers = [];
-    this.state.providers.forEach((provider,idx)=>{
-      const props = {}
-      if (this.state.activeProviders.indexOf(idx) > -1){
+  renderProviders = (providers,activeProviders,searchByObj) => {
+    const providerComponents = [];
+    const searchActive = (searchByObj.searchField && (searchByObj.searchValue || searchByObj.searchValue === '0'))? true : false;
+
+
+    providers.forEach((provider,idx)=>{
+      const props = {};
+      if (activeProviders.indexOf(idx) > -1){
         props.className = 'active'
       }
-      providers.push(<Provider {...props}
-                               key={`provider-${idx}`}
-                               provider={provider}
-                               onClick={()=>{this.toggleActiveProvider(idx)}}/>)
+
+      if(searchActive) {
+        if(provider[searchByObj.searchField].trim().toLocaleLowerCase() == searchByObj.searchValue.trim().toLocaleLowerCase()){
+          providerComponents.push(<Provider {...props}
+            key={`provider-${idx}`}
+            provider={provider}
+            onClick={()=>{this.toggleActiveProvider(idx)}}/>)
+        }
+      } else {
+        providerComponents.push(<Provider {...props}
+          key={`provider-${idx}`}
+          provider={provider}
+          onClick={()=>{this.toggleActiveProvider(idx)}}/>)
+      }
+
     });
 
-    const dataKeys = Data.dataFields? Object.keys(Data.dataFields): []
-    const sortOptions = []
+    return providerComponents
+  }
+
+  render() {
+    const {providers,activeProviders,searchByObj} = this.state;
+
+    const providerComponents = this.renderProviders(providers,activeProviders,searchByObj);
+
+    const dataKeys = Data.dataFields? Object.keys(Data.dataFields): [];
+    const sortOptions = [];
     dataKeys.forEach((key, idx)=>{
       sortOptions.push(<MenuItem value={key} key={`sortItem-${idx}`} primaryText={Data.dataFields[key].label} />)
-    })
+    });
 
     return (
       <div className="container provider-directory-container">
@@ -53,7 +76,7 @@ class ProviderDirectory extends React.Component {
             <div className="row secondary-title">
               <h2>Search for Provider</h2>
             </div>
-            <ProviderSearch searchFields={Data.dataFields} providers={this.state.providers}/>
+            <ProviderSearch searchFields={Data.dataFields} providers={providers} onSearchSelected={this.onSearchSelected}/>
             <div className="row secondary-title">
               <h2>Create Provider</h2>
             </div>
@@ -91,7 +114,7 @@ class ProviderDirectory extends React.Component {
             </div>
             <div className="row">
               <div className="provider-list col s12">
-                {providers}
+                {providerComponents}
               </div>
             </div>
             <div className="row">
@@ -104,6 +127,10 @@ class ProviderDirectory extends React.Component {
         </div>
       </div>
     )
+  }
+
+  onSearchSelected = (searchValue, searchField) => {
+    this.setState({searchByObj:{searchValue,searchField}})
   }
 
   removeSelectedProviders = () => {

@@ -35,6 +35,7 @@ class ProviderSearch extends React.Component {
         <div className="col s6 m8 l6">
           <Autosuggest
             suggestions={currentSuggestions}
+            onSuggestionSelected={this.searchSelectedHandler}
             onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
             onSuggestionsClearRequested={this.onSuggestionsClearRequested}
             getSuggestionValue={this.getSuggestionValue}
@@ -58,11 +59,16 @@ class ProviderSearch extends React.Component {
       </div>
     )
   }
+  searchSelectedHandler = () => {
+    if(this.props.onSearchSelected){
+      this.props.onSearchSelected(this.state.value,this.state.searchBy)
+    }
+  };
   onSelectFieldChange = (e,key,value) => {
     if(value){
       this.setState({searchBy: value})
     }
-  }
+  };
   onInputChange = (event, { newValue }) => {
     this.setState({
       value: newValue
@@ -110,7 +116,8 @@ const returnUnique = (arr)=> {
 
 ProviderSearch.propTypes = {
   searchFields: PropTypes.object.isRequired,
-  providers: PropTypes.array.isRequired
+  providers: PropTypes.array.isRequired,
+  onSearchSelected: PropTypes.func.isRequired
 };
 
 export default ProviderSearch
