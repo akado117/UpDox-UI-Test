@@ -73,6 +73,7 @@
   },
   "dependencies": {
     "react": "^15.0.1",
+    "react-autosuggest": "^9.0.1",
     "react-dom": "^15.0.1",
     "react-tap-event-plugin": "^2.0.1"
   }

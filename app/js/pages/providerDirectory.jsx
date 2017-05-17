@@ -53,7 +53,7 @@ class ProviderDirectory extends React.Component {
             <div className="row secondary-title">
               <h2>Search for Provider</h2>
             </div>
-            <ProviderSearch searchFields={Data.dataFields}/>
+            <ProviderSearch searchFields={Data.dataFields} providers={this.state.providers}/>
             <div className="row secondary-title">
               <h2>Create Provider</h2>
             </div>
@@ -64,7 +64,7 @@ class ProviderDirectory extends React.Component {
               <h2>Provider List</h2>
             </div>
             <div className="row">
-              <div className="input-field col s6">
+              <div className="input-field col s6 remove-margin">
                 <SelectField
                   floatingLabelText="Sort By"
                   floatingLabelFixed={true}
@@ -75,7 +75,7 @@ class ProviderDirectory extends React.Component {
                   {sortOptions}
                 </SelectField>
               </div>
-              <div className="input-field col s6">
+              <div className="input-field col s6 remove-margin">
                 <SelectField
                   floatingLabelText="Sort Order"
                   floatingLabelFixed={true}
@@ -138,12 +138,14 @@ class ProviderDirectory extends React.Component {
       this.sortProviders(payload, this.state.sortByOrder)
     }
   }
+
   changeSortByOrder = (e, key, payload) => {
     if(payload){
       this.setState({sortByOrder: payload});
       this.sortProviders(this.state.sortByField, payload)
     }
   }
+
   addProvider = (providerData) => {
     this.state.providers.push(providerData);//"bad practice" as its modifying state without calling setState
     this.setState({providers: this.state.providers});//since setState is called immediately after its not worth the performance hit to create a new object and clone it.
