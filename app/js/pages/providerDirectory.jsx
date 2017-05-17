@@ -2,6 +2,7 @@ import React from 'react'
 
 import Provider from '../components/provider.jsx'
 import AddProviderForm from '../components/addproviderForm.jsx'
+import ProviderSearch from '../components/providerSearch.jsx'
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import _ from 'lodash'
@@ -49,6 +50,10 @@ class ProviderDirectory extends React.Component {
       <div className="container provider-directory-container">
         <div className="row">
           <div className="col s12 l6">
+            <div className="row secondary-title">
+              <h2>Search for Provider</h2>
+            </div>
+            <ProviderSearch searchFields={Data.dataFields}/>
             <div className="row secondary-title">
               <h2>Create Provider</h2>
             </div>
