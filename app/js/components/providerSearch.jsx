@@ -25,7 +25,7 @@ class ProviderSearch extends React.Component {
 
     // Autosuggest will pass through all these props to the input element.
     const inputProps = {
-      placeholder: '',
+      placeholder: 'Search For',
       value,
       onChange: this.onInputChange
     };
@@ -58,6 +58,11 @@ class ProviderSearch extends React.Component {
       </div>
     )
   }
+  onSelectFieldChange = (e,key,value) => {
+    if(value){
+      this.setState({searchBy: value})
+    }
+  }
   onInputChange = (event, { newValue }) => {
     this.setState({
       value: newValue
@@ -78,23 +83,29 @@ class ProviderSearch extends React.Component {
     const inputValue = value.trim().toLowerCase();
     const inputLength = inputValue.length;
 
-    return inputLength === 0 ? [] : providers.filter(provider =>
-      provider[this.state.searchBy].toLowerCase().slice(0, inputLength) === inputValue
-    );
+    const suggestions = [];
+    if(inputLength) {
+      providers.forEach((provider) => {
+        if (provider[this.state.searchBy].toLowerCase().slice(0, inputLength) === inputValue)
+          suggestions.push(provider[this.state.searchBy])
+      });
+    }
+    return returnUnique(suggestions);
   };
-  getSuggestionValue = suggestion => suggestion[this.state.searchBy];
+  getSuggestionValue = suggestion => suggestion;
   renderSuggestion = suggestion => (//can make them pretty/have pictures/ect
     <div>
-      {suggestion[this.state.searchBy]}
+      {suggestion}
     </div>
   );
-  onSelectFieldChange = (e,key,value) => {
-    if(value){
-      this.setState({searchBy: value})
-    }
-  }
 }
 
+const returnUnique = (arr)=> {
+  const seen = {};
+  return arr.filter(function(item) {
+    return seen.hasOwnProperty(item) ? false : (seen[item] = true);
+  });
+};
 
 
 ProviderSearch.propTypes = {

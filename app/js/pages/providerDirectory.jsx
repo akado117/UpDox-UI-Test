@@ -57,7 +57,9 @@ class ProviderDirectory extends React.Component {
             <div className="row secondary-title">
               <h2>Create Provider</h2>
             </div>
-            <AddProviderForm formFields={Data.dataFields} onSubmit={this.addProvider}/>
+            <div className="row">
+              <AddProviderForm formFields={Data.dataFields} onSubmit={this.addProvider}/>
+            </div>
           </div>
           <div className="col s12 l6">
             <div className="row secondary-title">

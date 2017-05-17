@@ -2,4 +2,33 @@
   .remove-margin {
     margin: 0;
   }
+  .react-autosuggest__container {
+    margin-top: 21px;
+    position: relative;
+    @media #{$large-and-up} {
+      margin-top: 20px;
+    };
+    @media #{$extra-large-and-up} {
+      margin-top: 19px;
+    };
+    .react-autosuggest__suggestions-container {
+      display: none;
+      width: 100%;
+      background-color: white;
+      position: absolute;
+      z-index: 25;
+      box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+      border-radius: 2px;
+    }
+    .react-autosuggest__suggestions-container--open {
+      display: block;
+    }
+    .react-autosuggest__suggestion{
+      padding: 5px 15px;
+    }
+    .react-autosuggest__suggestion--highlighted{
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+  }
+
 }
