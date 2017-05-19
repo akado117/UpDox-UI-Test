@@ -76,7 +76,10 @@ class ProviderDirectory extends React.Component {
             <div className="row secondary-title">
               <h2>Search for Provider</h2>
             </div>
-            <ProviderSearch searchFields={Data.dataFields} providers={providers} onSearchSelected={this.onSearchSelected}/>
+            <ProviderSearch searchFields={Data.dataFields}
+                            providers={providers}
+                            onSearchSelected={this.setSearch}
+                            onSearchClear={()=>{this.setSearch()}}/>
             <div className="row secondary-title">
               <h2>Create Provider</h2>
             </div>
@@ -129,8 +132,12 @@ class ProviderDirectory extends React.Component {
     )
   }
 
-  onSearchSelected = (searchValue, searchField) => {
-    this.setState({searchByObj:{searchValue,searchField}})
+  setSearch = (searchValue, searchField) => {
+    if(!(typeof  searchValue === 'undefined' || typeof searchField === 'undefined')){
+      this.setState({searchByObj: {searchValue, searchField}, activeProviders: []})//keeps hidden providers from ever being selected
+    } else {
+      this.setState({searchByObj: {}})
+    }
   }
 
   removeSelectedProviders = () => {

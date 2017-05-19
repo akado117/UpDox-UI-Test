@@ -73,6 +73,9 @@ class ProviderSearch extends React.Component {
     this.setState({
       value: newValue
     });
+    if(this.props.onSearchClear && newValue === ''){
+      this.props.onSearchClear()
+    }
   };
   onSuggestionsFetchRequested = ({ value }) => {
     this.setState({
@@ -117,7 +120,8 @@ const returnUnique = (arr)=> {
 ProviderSearch.propTypes = {
   searchFields: PropTypes.object.isRequired,
   providers: PropTypes.array.isRequired,
-  onSearchSelected: PropTypes.func.isRequired
+  onSearchSelected: PropTypes.func.isRequired,
+  onSearchClear: PropTypes.func.isRequired,
 };
 
 export default ProviderSearch
