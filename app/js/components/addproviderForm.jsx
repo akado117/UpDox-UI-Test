@@ -30,13 +30,20 @@ class AddProviderForm extends React.Component {
     </div> : '';
 
     return (
-      <form onSubmit={this.handleOnSubmit} className="add-provider-form-container">
-        {successMessage}
-        {fieldComponents}
-        <div className="add-provider-btn-container">
-          <button className="waves-effect waves-light btn add-provider-btn" type="submit">Add Provider</button>
-        </div>
-      </form>
+      <div className={`add-provider-form-container ${this.props.className? this.props.className: ''}`}>
+        <form onSubmit={this.handleOnSubmit} className='form'>
+          <div className={`row remove-side-margin ${this.props.formFieldsClass? this.props.formFieldsClass : ''}`}>
+            <div className="row secondary-title">
+              <h2>{this.props.title? this.props.title : ''}</h2>
+            </div>
+            {successMessage}
+            {fieldComponents}
+          </div>
+          <div className="add-provider-btn-container">
+            <button className="waves-effect waves-light btn add-provider-btn" type="submit">Add Provider</button>
+          </div>
+        </form>
+      </div>
     )
   }
   handleOnSubmit = (e) => {
@@ -57,6 +64,9 @@ class AddProviderForm extends React.Component {
 }
 
 AddProviderForm.propTypes ={
+  title: PropTypes.string,
+  formFieldsClass: PropTypes.string,
+  className: PropTypes.string,
   formFields: PropTypes.object.isRequired,
   onSubmit: PropTypes.func
 };

@@ -77,14 +77,12 @@ class ProviderDirectory extends React.Component {
               <h2>Search for Provider</h2>
             </div>
             <ProviderSearch searchFields={Data.dataFields}
+                            title="Search for Provider"
                             providers={providers}
                             onSearchSelected={this.setSearch}
                             onSearchClear={()=>{this.setSearch()}}/>
-            <div className="row secondary-title">
-              <h2>Create Provider</h2>
-            </div>
             <div className="row">
-              <AddProviderForm formFields={Data.dataFields} onSubmit={this.addProvider}/>
+              <AddProviderForm formFields={Data.dataFields} onSubmit={this.addProvider} title='Create Provider' formFieldsClass='provider-list'/>
             </div>
           </div>
           <div className="col s12 l6">
@@ -119,6 +117,7 @@ class ProviderDirectory extends React.Component {
               <div className="provider-list col s12">
                 {providerComponents}
               </div>
+              <p className="help-text">Click/press enter on providers to select. Then press remove to remove them</p>
             </div>
             <div className="row">
               <div className="col s12 remove-btn-container">
